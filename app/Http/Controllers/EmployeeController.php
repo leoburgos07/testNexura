@@ -114,27 +114,25 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        return $employee;
         $this->validate($request,[
             'name' => 'bail|required',
             'email' => 'bail|required|email|unique:employees,email,'.$employee->id,
             'description' => 'bail|required',
-            'rol' => 'bail|required',
-            'area_id' =>'bail|required'
+            'area' =>'bail|required'
         ]);
         
         try {
             $employee->name = $request['name'];
             $employee->description = $request['description'];
-            $employee->area_id = $request['area_id']; 
+            $employee->area_id = $request['area']; 
             $employee->email = $request['email'];
             $employee->sex = $request['sex'];
-            $employee->bulletin = $request['description'] ? 1 : 0;
-            
-            //$employee->save();
-            //return redirect('welcome')->with('status', 'Empleado Actualizado correctamente');
+            $employee->bulletin = $request['bulletin'] ? 1 : 0;
+            $employee->save();
+            return redirect('/')->with('status', 'Empleado Actualizado correctamente');
         } catch (\Throwable $th) {
-            //throw $th;
+            return $th;
+            return Redirect::back()->withErrors(['msg' => 'Error al actualizar al empleado']);
         }
     }
 

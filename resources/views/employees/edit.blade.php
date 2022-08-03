@@ -14,7 +14,7 @@ Editar Empleado
     </div>
 </div>
 
-<form method="POST" action="{{url('updateEmployee/{$employee}')}}">
+<form method="POST" action="{{route('updateEmployee',['employee' => $employee])}}">
     {!! csrf_field() !!}
     <div class="form-group">
         <label for="name" class="font-weight-bold">Nombre Completo <span class="text-danger">*</span> </label>
@@ -70,30 +70,9 @@ Editar Empleado
             Deseo recibir boletín informativo
         </label>
     </div>
-    <label class="font-weight-bold">Roles <span class="text-danger">*</span></label>
-    @foreach ($roles as $rol)
-    <?php $flag = false; ?>
-    <div class="form-check">
-        @foreach ($roles_employee as $rol_employee)
-            @if ($rol_employee->pivot->rol_id == $rol->id)
-                <?php $flag = true; ?>
-            @endif
-        @endforeach
-        @if ($flag==false)
-            <input class="form-check-input" type="checkbox" name="rol[]" value="{{$rol->id}}">
-            <label class="form-check-label">
-                {{$rol->name}}
-            </label>
-        @else
-            <input class="form-check-input" type="checkbox" name="rol[]" value="{{$rol->id}}" checked>
-            <label class="form-check-label">
-                {{$rol->name}}
-            </label>
-        @endif
-    </div>
-    @endforeach
+    
     <div class="text-center">
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 
 </form>

@@ -18,7 +18,7 @@ Este es un test para el cargo de desarollador PHP en la empresa NEXURA, desaroll
 - php artisan migrate --seed
 - php artisan serve
 
-## Hasta este punto el proyecto esta a un 90% ya que faltan unos detalles del editar
+## TERMINADO 100% EL PROYECTO 
 
 
 Author: Leonardo Burgos Hernández

@@ -33,7 +33,7 @@ class EmployeeRequest extends FormRequest
         
         return [
             'name' => 'bail|required',
-            'email' => 'bail|required|email|unique:employees,email,'.$employee->id,
+            'email' => 'bail|required|email|unique:employees,email',
             'description' => 'bail|required',
             'rol' => 'bail|required'
         ];

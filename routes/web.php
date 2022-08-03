@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', [EmployeeController::class, 'index']);
 
 // Route::match(array('GET', 'POST'), [EmployeeController])
-
 Route::controller(EmployeeController::class)->group(function(){
+    
     Route::get('/', 'index')->name('home');
     Route::get('createEmployee', [EmployeeController::class,'create'])->name('createEmployee');
     route::get('editEmployee/{employee}', [EmployeeController::class,'edit'])->name('editEmployee');
