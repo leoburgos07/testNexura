@@ -22,10 +22,10 @@ class Employee extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public function setRolAttribute($value){
+    protected function setRolAttribute($value){
         $this->attributes['rol'] = json_encode($value);
     }
-    public function getRolAttribute($value){
+    protected function getRolAttribute($value){
         return $this->attributes['rol'] = json_encode($value);
     }
 

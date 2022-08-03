@@ -92,9 +92,17 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        //
+        $roles_employee = $employee->rol()->get();
+        $areas = Area::all();
+        $roles = Rol::All();
+        return view('employees.edit', compact([
+            'employee',
+            'roles_employee',
+            'areas',
+            'roles'
+        ]));
     }
 
     /**
@@ -104,9 +112,30 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
-        //
+        return $employee;
+        $this->validate($request,[
+            'name' => 'bail|required',
+            'email' => 'bail|required|email|unique:employees,email,'.$employee->id,
+            'description' => 'bail|required',
+            'rol' => 'bail|required',
+            'area_id' =>'bail|required'
+        ]);
+        
+        try {
+            $employee->name = $request['name'];
+            $employee->description = $request['description'];
+            $employee->area_id = $request['area_id']; 
+            $employee->email = $request['email'];
+            $employee->sex = $request['sex'];
+            $employee->bulletin = $request['description'] ? 1 : 0;
+            
+            //$employee->save();
+            //return redirect('welcome')->with('status', 'Empleado Actualizado correctamente');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

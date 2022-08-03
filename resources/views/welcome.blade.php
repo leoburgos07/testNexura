@@ -35,7 +35,7 @@ Listado de empleados
             <td>{{$employee->sex}}</td>
             <td>{{$employee->area->name}}</td>
             <td>{{$employee->bulletin}}</td>
-            <td><a href="{{route('editEmployee', ['id' => $employee->id])}}" class="btn "><i class="fa-solid fa-pen-to-square fa-lg"></i> </a> </td>
+            <td><a href="{{route('editEmployee', ['employee' => $employee])}}" class="btn "><i class="fa-solid fa-pen-to-square fa-lg"></i> </a> </td>
             <form action="{{route('deleteEmployee',['employee' => $employee])}}" method="POST">
                 @csrf
                 @method('DELETE')

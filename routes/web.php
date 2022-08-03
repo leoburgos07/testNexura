@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(EmployeeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
     Route::get('createEmployee', [EmployeeController::class,'create'])->name('createEmployee');
-    route::get('editEmployee', [EmployeeController::class,'edit'])->name('editEmployee');
+    route::get('editEmployee/{employee}', [EmployeeController::class,'edit'])->name('editEmployee');
     route::delete('deleteEmployee/{employee}', [EmployeeController::class,'destroy'])->name('deleteEmployee');
     route::post('storeEmployee', [EmployeeController::class,'store'])->name('storeEmployee');
+    route::post('updateEmployee/{employee}',[EmployeeController::class,'update'])->name('updateEmployee');
 });
